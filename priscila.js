@@ -12,9 +12,5 @@ function addTask() {
 document.getElementById("taskButton").onclick = addTask;
 
 function showDetail(){
-	
-}
-
-function hideDetail(){
 
 }
