@@ -2,15 +2,112 @@
  * Priscila's CSS lib - September 2017
  */
 
-.navbar {
-  position: relative;
-  display: -ms-flexbox;
+
+/* Header */
+.bar {
+    background: white;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: #ddd solid thin;
+}
+
+/* Main */
+.content {
+    display: flex;
+    background: #ccc;
+}
+
+.panel  {
+    background: white;
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    min-height: 300px;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.panel .panel-footer {
+    height: 100px;
+    background: #eee;
+}
+
+.panel .panel-header {
+    height: 30px;
+    background: #eee;
+}
+
+.panel .panel-body {
+    flex: 1
+}
+
+.panel-header {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: #ddd solid thin;
+}
+
+.panel-body {
+  padding:20px;
+  flex:1
+}
+
+.panel-footer {
+    border-top: #ddd solid thin;
+}
+
+.panel-header,
+.panel-footer,
+.bar {
+    padding: 10px;
+}
+
+
+.button {
+    background: #fff;
+    border-color: #14aaf5;
+    color: #14aaf5;
+    fill: #14aaf5;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 9px;
+    align-items: center;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.taskItem{
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  padding: 0.5rem 1rem;
+  align-items: center;
+  height:30px;
+  line-height:30px;
+  border-bottom:#ccc solid thin
+}
+
+input {
+  border: none;
+}
+
+.iconA {
+  padding: 4px;
+}
+
+#taskTemplate {
+  display: none;
+}
+a {
+    text-decoration: none;
+}
+
+a: hover{
+    text-decoration: none;
+    color: #14aaf5;
+}
+
+#searchField {
+  background: url(img/search.png) no-repeat 7px 7px;
+  padding-left:30px;
+  border: 1px solid #DDD;
+  height: 30px;
 }
