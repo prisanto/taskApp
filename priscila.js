@@ -56,6 +56,10 @@ function updateTaskDom(task){
 
 }
 
+function updTaskName(taskId) {
+    var taskName = document.getElementById("taskName").value = "My task";
+
+}
 
 function updateTaskList(){
     var element = document.getElementById("taskList");
@@ -66,3 +70,4 @@ function updateTaskList(){
 
 document.getElementById("taskButton").onclick = addTask;
 document.getElementById("closeDetail").onclick = hideTaskDetail;
+document.getElementById("calendar").onclick = updTaskName;
