@@ -31,8 +31,9 @@ function addTask() {
     taskList.push(task);
     var domElement = createTaskDOM();
     taskListDOM.push(domElement);
-    var element = document.getElementById("taskList");
-    element.appendChild(domElement);
+    updateTaskList();
+    //var element = document.getElementById("taskList");
+    //element.appendChild(domElement);
     showTaskDetail(task);
 }
 
@@ -55,4 +56,13 @@ function updateTaskDom(task){
 
 }
 
+
+function updateTaskList(){
+    var element = document.getElementById("taskList");
+    for (var i = taskList.length - 1; i >= 0; i--) {
+        element.appendChild(taskListDOM[i]);
+    }
+}
+
 document.getElementById("taskButton").onclick = addTask;
+document.getElementById("closeDetail").onclick = hideTaskDetail;
