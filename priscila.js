@@ -26,6 +26,13 @@ function createTaskDOM(){
     return clone;
 }
 
+function updateTaskList(){
+    var element = document.getElementById("taskList");
+    for (var i = taskList.length - 1; i >= 0; i--) {
+        element.appendChild(taskListDOM[i]);
+    }
+}
+
 function addTask() {
     var task = createTask();
     taskList.push(task);
@@ -61,12 +68,7 @@ function updTaskName(taskId) {
 
 }
 
-function updateTaskList(){
-    var element = document.getElementById("taskList");
-    for (var i = taskList.length - 1; i >= 0; i--) {
-        element.appendChild(taskListDOM[i]);
-    }
-}
+
 
 document.getElementById("taskButton").onclick = addTask;
 document.getElementById("closeDetail").onclick = hideTaskDetail;

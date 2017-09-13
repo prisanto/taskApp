@@ -115,3 +115,8 @@ a: hover{
 #taskDetail {
   display: none;
 }
+
+#taskDetailBody {
+  display: block ;
+  align-items: center;
+}
