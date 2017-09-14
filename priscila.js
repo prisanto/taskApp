@@ -1,32 +1,22 @@
 //Cria a lista de informacao de tarefas e a lista de elementos dom da tarefa
 var taskList = [];
 var taskListDOM = [];
+var taskEditing = 1;
 
 function createTask(newTitle, newDescription){
 	return {title:newTitle, description:newDescription};
 }
 
 function createTaskDOM(){
-	var clone = document.getElementById("taskTemplate").cloneNode(true);
-  	var taskListLen = taskList.length;
-  	var taskId = "task 1";
-  	if(taskListLen > 1){
-  		taskId = "task " + (taskListLen);
-  	}
-  	clone.id = taskId;
+    var clone = document.getElementById("taskTemplate").cloneNode(true);
+    var taskListLen = taskList.length;
+    var taskId = 1;
+    if(taskListLen > 1){
+        taskId = taskListLen;
+    }
+    clone.id = taskId;
     clone.addEventListener('click', showTaskDetail(clone.id));
     return clone;
-}
-
-function addTask() {
-    var task = createTask();
-    taskList.push(task);
-    var domElement = createTaskDOM();
-    taskListDOM.push(domElement);
-    updateTaskList();
-    //var element = document.getElementById("taskList");
-    //element.appendChild(domElement);
-    showTaskDetailPanel(task);
 }
 
 function updateTaskList(){
@@ -36,11 +26,17 @@ function updateTaskList(){
     }
 }
 
-function showTaskDetailPanel(task){
-    var editingTask = taskList.indexOf(task);
-    //add focus to taskName
-    //document.getElementById("taskName").focus();
-	document.getElementById("taskDetail").style.display = 'block';
+function showTaskDetailPanel(){
+    document.getElementById("taskDetail").style.display = 'block';
+}
+
+function addTask() {
+    var task = createTask("New Task", "Description");
+    taskList.push(task);
+    var domElement = createTaskDOM();
+    taskListDOM.push(domElement);
+    updateTaskList();
+    showTaskDetailPanel(task);
 }
 
 function hideTaskDetail(){
@@ -60,8 +56,8 @@ function updateTaskDom(task){
 
 function showTaskDetail(task) {
     document.getElementById("taskDetail").style.display = 'block';
-    var editingTask = taskList.indexOf(task);
-    //updateTaskDom(task)
+    var taskEditing = taskList.indexOf(task);
+    updateTaskDom(taskEditing);
 }
 
 /*
@@ -72,19 +68,20 @@ document.getElementById("taskList").addEventListener("click", function(e){
 */
 
 function updTaskName(taskId) {
-    var taskName = document.getElementById("taskName").value = "My task";
+    var taskName = document.getElementById("taskName");
     taskName.value = taskList[taskId].title;
 }
 
 function updTaskDetail(taskId) {
-    var taskName = document.getElementById("taskName").value = "My task";
+    var taskName = document.getElementById("taskName");
     taskName.value = taskList[taskId].title;
+    alert("Atualizei o detail");
 }
 
 document.getElementById("taskButton").onclick = addTask;
 document.getElementById("closeDetail").onclick = hideTaskDetail;
 document.getElementById("calendar").onclick = updTaskName;
-document.getElementById("taskName").onfocusout = updTaskName;
+document.getElementById("taskName").onfocusout = updTaskName(taskEditing);
 document.getElementById("taskDetail").onfocusout = updTaskDetail;
 
 
