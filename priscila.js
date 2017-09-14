@@ -22,7 +22,13 @@ function createTask(newTitle, newDescription){
 
 function createTaskDOM(){
 	var clone = document.getElementById("taskTemplate").cloneNode(true);
-  	clone.removeAttribute("id");
+  	//clone.removeAttribute("id");
+  	var taskListLen = taskList.length;
+  	var taskId = "task 1";
+  	if(taskListLen > 1){
+  		taskId = "task " + (taskListLen + 1);
+  	}
+  	clone.id = taskId;
     return clone;
 }
 
