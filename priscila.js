@@ -26,9 +26,10 @@ function createTaskDOM(){
   	var taskListLen = taskList.length;
   	var taskId = "task 1";
   	if(taskListLen > 1){
-  		taskId = "task " + (taskListLen + 1);
+  		taskId = "task " + (taskListLen);
   	}
   	clone.id = taskId;
+    clone.addEventListener('click', function(){alert(clone.id);})
     return clone;
 }
 
@@ -47,13 +48,13 @@ function addTask() {
     updateTaskList();
     //var element = document.getElementById("taskList");
     //element.appendChild(domElement);
-    showTaskDetail(task);
+    showTaskDetailPanel(task);
 }
 
-
-
-function showTaskDetail(task){
+function showTaskDetailPanel(task){
     var editingTask = taskList.indexOf(task);
+    //add focus to taskName
+    //document.getElementById("taskName").focus();
 	document.getElementById("taskDetail").style.display = 'block';
 }
 
@@ -74,8 +75,18 @@ function updTaskName(taskId) {
 
 }
 
+function showTaskDetail(task) {
 
+}
+
+/*
+document.getElementById("taskList").addEventListener("click", function(e){
+    var target = e.target;
+    alert(e.target.id);
+});
+*/
 
 document.getElementById("taskButton").onclick = addTask;
 document.getElementById("closeDetail").onclick = hideTaskDetail;
 document.getElementById("calendar").onclick = updTaskName;
+document.getElementById("taskName").onfocusout = updTaskName;
