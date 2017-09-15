@@ -1,18 +1,62 @@
-/*!
- * Priscila's CSS lib - September 2017
- */
+/*  
+    Date: September 2017
+    Author: Priscila Santos
+    Do: CSS file
+*/
 
+/* Bars */
 
-/* Header */
 .bar {
     background: white;
-    height: 40px;
-    line-height: 40px;
+    height: 35px;
+    line-height: 35px;
     border-bottom: #ddd solid thin;
+    padding: 10px;
+    display: flex;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-/* Main */
-.content {
+#topBar-right,
+#topBar-center,
+#topBar-left {
+    flex:1;
+    display: flex;
+    align-items: center;
+    height:30px;
+    line-height:30px;    
+    justify-content: space-between;
+}
+
+#topBar-center {
+    padding: 2px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#topBar-user {
+    position: absolute;
+    left:50%;
+    margin-left:-100px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    color: #151b26;
+    display: flex;
+    align-items: center;
+}
+
+#searchField {
+  background: url(img/search.png) no-repeat 7px 7px;
+  padding-left:30px;
+  border: 1px solid #DDD;
+  height: 30px;
+  border-radius: 30px;
+  width: 85%;
+}
+
+/* Main panels */
+.main {
     display: flex;
     background: #ccc;
 }
@@ -27,41 +71,70 @@
     margin: 20px;
 }
 
-.panel .panel-footer {
-    height: 100px;
-    background: #eee;
-}
-
 .panel .panel-header {
     height: 30px;
-    background: #eee;
-}
-
-.panel .panel-body {
-    flex: 1
 }
 
 .panel-header {
     height: 30px;
     line-height: 30px;
     border-bottom: #ddd solid thin;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.panel-body {
-  padding:20px;
-  flex:1
+.panel .panel-body {
+    flex: 1
+}
+
+.panel-body {    
+    height: 100px;
+    padding:20px;
+    flex:1
+}
+
+.panel .panel-footer {
+    height: 80px;
 }
 
 .panel-footer {
     border-top: #ddd solid thin;
-}
-
-.panel-header,
-.panel-footer,
-.bar {
     padding: 10px;
+    display: flex;
+    align-items: center;
 }
 
+/* Task item list */ 
+
+.taskItem{
+    display: flex;
+    align-items: center;
+    height:30px;
+    line-height:30px;
+    border-bottom:#ccc solid thin;
+}
+
+.taskItem:hover{
+    background-color:#D9F2FA;
+}
+
+/* Page objects */
+input {
+  border: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000000; mudar pra cinza
+}
+
+a: hover {
+    text-decoration: none;
+    color: #14aaf5;
+}
 
 .button {
     background: #fff;
@@ -77,47 +150,63 @@
     border-width: 1px;
 }
 
-.taskItem{
-  display: flex;
-  align-items: center;
-  height:30px;
-  line-height:30px;
-  border-bottom:#ccc solid thin
+.combo {
+    display: flex;
+    align-items: center;
+    height:30px;
 }
 
-input {
-  border: none;
+.iconCheck {
+    padding: 4px;
 }
 
-.iconA {
-  padding: 4px;
+.menuButton {
+    border-right: 1px solid #edf1f2;
+    padding: 5px;
 }
 
-#taskTemplate {
-  display: none;
-}
-a {
-    text-decoration: none;
+.avatar {
+    border-radius: 50%;
+    padding: 5px;
 }
 
-a: hover{
-    text-decoration: none;
-    color: #14aaf5;
+/* Task detail fields */
+
+#taskName {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: black;
+    line-height: 32px;
+    padding: 2px;
+    width: 85%;
 }
 
-#searchField {
-  background: url(img/search.png) no-repeat 7px 7px;
-  padding-left:30px;
-  border: 1px solid #DDD;
-  height: 30px;
+#taskDescription {    
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 8px;
+    width: 85%;
+    height: 40%
 }
+
+#taskComment {
+    border: 1px solid #D6D6D6;
+    width: 80%;
+    height: 60%;
+    padding: 4px;
+}
+
+/* Detail div is hidden initially */
 
 #taskDetail {
   display: none;
 }
 
-#taskDetailBody {
-  display: block ;
-  align-items: center;
-}
+/* Hide template */
 
+#taskTemplate {
+  display: none;
+}

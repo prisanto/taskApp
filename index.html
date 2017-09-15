@@ -1,74 +1,101 @@
+<!--  
+    Date: September 2017
+    Author: Priscila Santos
+    Do: HTML file for Task App - Quero teste
+-->
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Priscila's Task App</title>
-		
-		<link rel="stylesheet" type="text/css" href="priscila.css">
-	</head>
-	<body>		
-		<div id="header">
-			<div id="topBar" class="bar">
-				<img src="img/menu.png">
-				<a href="">My Tasks</a>
-				<a href="">Inbox</a>				
-				<img src="img/add.png">
-				<input type="text" id="searchField" name="search" placeholder="Search">
-				<a href="">Help</a>
-				<img src="img/down-arrow.png">
-				<a href="">Personal Projects</a>
-				<img src="img/avatar.png">
-			</div>		
-			<div id="userBar" class="bar">
-				<img src="img/avatar.png">
-				<a href="">My Personal Tasks</a>
-				<img src="img/down-arrow.png">
-			</div>
-		</div>
-		<div id="main" class="content">
-			<div class="panel">
-				<div id="taskHeader" class="panel-header">
-					<button id="taskButton" class="button">Add Task</button>
-					<img src="img/work-tool.png">
-					<span></span>
-				</div>
-				<div id="taskBody" class="panel-body">
-					<div id="taskList">						
-					</div>
-				</div>
-			</div>
-			<div id="taskDetail" class="panel">
-				<div id="taskDetailHeader" class="panel-header">
-					<img src="img/avatar.png">
-					<a href="">Priscila</a>
-					<img src="img/small-calendar.png">
-					<a href="" id="calendar">Due Date</a>
-					<img src="img/like.png">
-					<img src="img/subtask.png">
-					<img src="img/paperclip.png">
-					<img src="img/garbage.png">
-					<img src="img/dots.png">
-					<a href="" id="closeDetail">X</a>
-				</div>
-				<div id="taskDetailBody" class="panel-body">
-					<input type="text" id="taskName" name="taskName" placeholder="New Task" autofocus>
-					<input type="text" id="taskDescription" name="taskDescription" placeholder="Description">
-				</div>
-				<div id="taskDetailComment" class="panel-footer">
-					<input type="text" name="comment" placeholder="Write a comment...">
-				</div>
-			</div>
-<div id="showArray">Array</div>
+<head>
+    <title>Priscila's Task App</title>
 
-		</div>
-		    
-        <!-- template -->
-		  <div id="taskTemplate" class="taskItem">
-		  	<img src="img/checked.png" class="iconA">
-		    <input type="text" class="taskText">
-		  </div>
-		  <script type="text/javascript" src="priscila.js"></script>
+    <link rel="stylesheet" type="text/css" href="priscila.css">
+</head>
+<body>
+    <div id="header">
+        <div id="topBar" class="bar">
+            <div id="topBar-right">
+                <a href="#"  class="menuButton">
+                    <img src="img/menu.png">
+                </a>
+                <a href="#">My Tasks</a>
+                <a href="#">Inbox</a>
+                <img src="img/add.png">
+            </div>
+            <div id="topBar-center"> 
+                <input type="text" id="searchField" name="search" placeholder="Search">
+            </div>
+            <div id="topBar-left">
+                <div class="combo">
+                    <a href="#">Help</a>
+                    <img src="img/down-arrow.png" class="iconCheck">
+                </div>
+                <div class="combo">
+                    <a href="#">Personal Projects</a>
+                    <img src="img/avatar.png" class="avatar">
+                </div>
+            </div>
+        </div>
+        <div id="userBar" class="bar">
+            <div id="topBar-user">
+                <img src="img/avatar.png" class="avatar">
+                <a>My Personal Tasks</a>
+                <img src="img/down-arrow.png" class="iconCheck">
+            </div>
+        </div>
+    </div>
+    <div id="main" class="main">
+        <div class="panel">
+            <div id="taskHeader" class="panel-header">
+                <button id="taskButton" class="button">Add Task</button>
+                <img src="img/work-tool.png">
+            </div>
+            <div id="taskBody" class="panel-body">
+                <div id="taskList">
+                </div>
+            </div>
+        </div>
+        <div id="taskDetail" class="panel">
+            <div id="taskDetailHeader" class="panel-header">
+                <div class="combo">
+                    <img src="img/avatar.png" class="avatar">
+                    <a href="#">Priscila</a>
+                </div>
+                <div id="combo">
+                    <img src="img/small-calendar.png">
+                    <a href="#" class="iconCheck">Due Date</a>
+                </div>
+                <img src="img/like.png">
+                <img src="img/subtask.png">
+                <img src="img/paperclip.png">
+                <img src="img/garbage.png" id="deleteItem">
+                <img src="img/dots.png" >
+                <a href="#" id="closeDetail">X</a>
+            </div>
+            <div id="taskDetailBody" class="panel-body">
+                <div class="combo">
+                    <img src="img/checked.png">   
+                    <input id="taskName" type="text" name="taskName" placeholder="New Task">
+                </div>
+                <input id="taskDescription" type="text" name="taskDescription" placeholder="Description">
+            </div>
+            <div id="taskDetailComment" class="panel-footer">            
+                <img src="img/avatar.png" class="avatar">
+                <input id="taskComment" type="text" name="comment" placeholder="Write a comment...">
+            </div>
+        </div>
+    </div>
 
-		<!-- icon credit -->
-		<div>Icons made by <a href="https://www.flaticon.com/authors/egor-rumyantsev" title="Egor Rumyantsev">Egor Rumyantsev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-    </body>
+    <!-- template -->
+    <div id="taskTemplate" class="taskItem">
+        <img src="img/checked.png" class="iconCheck">
+        <span class="taskText"></span>
+    </div>
+
+    <!-- script -->
+    <script type="text/javascript" src="priscila.js"></script>
+
+    <!-- icon credit -->
+    <div>Icons made by <a href="https://www.flaticon.com/authors/egor-rumyantsev" title="Egor Rumyantsev">Egor Rumyantsev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+</body>
 </html>

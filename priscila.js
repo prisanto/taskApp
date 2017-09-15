@@ -1,121 +1,116 @@
-//Cria a lista de informacao de tarefas e a lista de elementos dom da tarefa
-var taskList = [];
-var taskListDOM = [];
-var taskEditing = 1;
+/*  
+    Date: September 2017
+    Author: Priscila Santos
+    Do: Cretes a task list and a DOM elements list and manipulates it
+*/
 
-function createTask(newTitle, newDescription){
-	return {title:newTitle, description:newDescription};
+// Properties ------------------------------------------------------------------
+var taskList = {};
+var taskListDOMElements = {};
+var editingTask = null;
+var taskCount = 0;
+
+// Dom Elements ----------------------------------------------------------------
+
+var taskTemplate = document.getElementById("taskTemplate");
+
+var taskListDomContainer = document.getElementById("taskList");
+var taskDetails = document.getElementById("taskDetail");
+
+var taskDetailTitle = document.getElementById("taskName");
+var taskDetailDescription = document.getElementById("taskDescription");
+
+var addTaskButton = document.getElementById("taskButton");
+
+var closeDetailButton = document.getElementById("closeDetail"); 
+var deleteItem = document.getElementById("deleteItem"); 
+
+// Add new Task to list --------------------------------------------------------
+
+function addTask() {
+
+    var taskId = "task_" + taskCount++;
+
+    var task = createTask(taskId, "", "");
+    taskList[taskId] = task;
+
+    var domElement = createNewTaskDOMElement(task);
+    taskListDOMElements[taskId] = domElement;
+
+    showTaskDetail(task);
 }
 
-function createTaskDOM(){
-    var clone = document.getElementById("taskTemplate").cloneNode(true);
-    var taskListLen = taskList.length;
-    var taskId = 1;
-    if(taskListLen > 1){
-        taskId = taskListLen;
-    }
-    clone.id = taskId;
-    clone.addEventListener('click', showTaskDetail(taskId));
-    return clone;
+function createTask(taskId, newTitle, newDescription) {
+    return {
+        id: taskId,
+        title: newTitle,
+        description: newDescription
+    };
 }
+
+function createNewTaskDOMElement(task) {
+    var domElement = taskTemplate.cloneNode(true);
+
+    taskListDomContainer.appendChild(domElement);
+
+    domElement.addEventListener('click',
+        function () {
+            showTaskDetail(task)
+        }
+    );
+
+    domElement.id = task.id;
+    return domElement;
+}
+
+// Task Detail -----------------------------------------------------------------
 
 function showTaskDetail(task) {
-    document.getElementById("taskDetail").style.display = 'block';
-    //var taskEditing = taskList.indexOf(task);
-    //console.log("TASK do detail: " + taskEditing);
-    updateTaskListDom(task);
+    editingTask = task
+    taskDetails.style.display = 'block';
+    taskDetailTitle.value = task.title;
+    taskDetailDescription.value = task.description;
+    taskDetailTitle.focus();
 }
 
-function updateTaskListDom(task){
-    var taskName = document.getElementById("taskName");
-    var taskDetail = document.getElementById("taskDetail");
-    console.log("task passada: " + task);
-    taskName.value = taskList[task-1].title;
-    taskDetail.value = taskList[task-1].description;
+function hideTaskDetail() {
+    document.getElementById("taskDetail").style.display = 'none';
 }
 
-function updateTaskList(){
-    var element = document.getElementById("taskList");
-    for (var i = taskList.length - 1; i >= 0; i--) {
-        element.appendChild(taskListDOM[i]);
-    }
+function updateListDOMElement(task) {
+    var element = getDOMElementByTaskId(task.id);
+    var domInput = element.getElementsByTagName('span')[0];
+    domInput.innerHTML = task.title;
 }
 
-function showTaskDetailPanel(){
-    document.getElementById("taskDetail").style.display = 'block';
+function updateEditingTask() {
+    editingTask.title = taskDetailTitle.value;
+    editingTask.description = taskDetailDescription.value;
+    updateListDOMElement(editingTask)
 }
-
-function addTask() {
-    var task = createTask("New Task", "Description");
-    taskList.push(task);
-    var domElement = createTaskDOM();
-    taskListDOM.push(domElement);
-    updateTaskList();
-    showTaskDetailPanel(task);
-}
-
-function hideTaskDetail(){
-	document.getElementById("taskDetail").style.display = 'none';
-}
-
-function updateTask(taskId){
-    taskList[taskiId]
-}
-
-
-
-/*
-document.getElementById("taskList").addEventListener("click", function(e){
-    var target = e.target;
-    alert(e.target.id);
-});
-*/
-
-function updTaskName(taskId) {
-    var taskName = document.getElementById("taskName");
-    console.log("ID da task no upd: " + taskEditing);
-
-    if(taskList.length){
-    	var nomeTarefa = taskList[taskEditing-1].title;
-    	taskList[taskEditing-1].title = taskName.value;
-    	var domInput = document.getElementById(taskEditing-1).getElementsByTagName('input');
-    	console.log("DOMINPT: " + domInput);
-    	domInput.value = taskName.value;
-	    updateTaskList;
-    }
-}
-
-function updTaskDetail(taskId) {
-    var taskName = document.getElementById("taskName");
-    taskName.value = taskList[taskId].title;
-    alert("Atualizei o detail");
-}
-
-document.getElementById("taskButton").onclick = addTask;
-document.getElementById("closeDetail").onclick = hideTaskDetail;
-//document.getElementById("calendar").onclick = updTaskName;
-document.getElementById("taskDetail").onfocusout = updTaskDetail;
-
-document.getElementById("taskName").onblur = updTaskName;
-
+ 
 function deleteMe(e) {
-  e.parentNode.parentNode.removeChild(e.parentNode)
+    // Falta deletar nos dicionários
+    e.parentNode.parentNode.removeChild(e.parentNode)
 }
 
+// Helpers ---------------------------------------------------------------------
 
-function showList(){
-    console.log(taskListDOM);
-    console.log(taskList);
+function getTaskByTaskId(taskId) {
+    return taskList[taskId];
 }
 
-document.getElementById("showArray").onclick = showList;
-
-/*
-function addTask() {
-  var clone = document.getElementById("taskTemplate").cloneNode(true);
-  var element = document.getElementById("taskList");
-  clone.removeAttribute("id");
-  element.appendChild(clone);
-  document.getElementById("taskDetail").style.display = 'block';
+function getDOMElementByTaskId(taskId) {
+    return taskListDOMElements[taskId];
 }
-*/
+
+// Event Handlers -------------------------------------------------------------------------
+
+addTaskButton.onclick = addTask;
+closeDetailButton.onclick = hideTaskDetail;
+taskDetails.onfocusout = updateEditingTask;
+taskDetailTitle.onchange = updateEditingTask;
+taskDetailDescription.onchange = updateEditingTask;
+taskDetailTitle.onkeyup = updateEditingTask;
+taskDetailDescription.onkeyup = updateEditingTask;
+
