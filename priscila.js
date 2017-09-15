@@ -109,8 +109,10 @@ function getDOMElementByTaskId(taskId) {
 addTaskButton.onclick = addTask;
 closeDetailButton.onclick = hideTaskDetail;
 taskDetails.onfocusout = updateEditingTask;
+
 taskDetailTitle.onchange = updateEditingTask;
+taskDetailTitle.onblur = updateEditingTask;
+
 taskDetailDescription.onchange = updateEditingTask;
-taskDetailTitle.onkeyup = updateEditingTask;
-taskDetailDescription.onkeyup = updateEditingTask;
+taskDetailDescription.onblur = updateEditingTask;
 
