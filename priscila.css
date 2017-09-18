@@ -119,6 +119,7 @@ body {
     height:30px;
     line-height:30px;
     border-bottom:#ccc solid thin;
+    position: relative;
 }
 
 .taskItem:hover{
@@ -132,7 +133,7 @@ input {
 
 a {
     text-decoration: none;
-    color: #000000; mudar pra cinza
+    color: #D6D6D6;
 }
 
 a: hover {

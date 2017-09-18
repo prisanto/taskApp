@@ -23,7 +23,6 @@ var taskDetailDescription = document.getElementById("taskDescription");
 var addTaskButton = document.getElementById("taskButton");
 
 var closeDetailButton = document.getElementById("closeDetail"); 
-var deleteItem = document.getElementById("deleteItem"); 
 
 // Add new Task to list --------------------------------------------------------
 
@@ -89,11 +88,6 @@ function updateEditingTask() {
     updateListDOMElement(editingTask)
 }
  
-function deleteMe(e) {
-    // Falta deletar nos dicionários
-    e.parentNode.parentNode.removeChild(e.parentNode)
-}
-
 // Helpers ---------------------------------------------------------------------
 
 function getTaskByTaskId(taskId) {
